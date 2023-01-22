@@ -1,0 +1,63 @@
+Created a yaml file called. ngn.yaml  
+
+The code inside the file as below. 
+
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: ensure nginx is at the latest version
+      apt: name=nginx state=latest
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+    - name: Ansible Create directory if not exists
+      file:
+        path: /var/www/html
+        state: directory
+        mode: 0755
+        owner: root
+        group: root
+    - name: copying file
+      copy:
+        src: /Users/brogrammer/Downloads/nginxsite/beginner-html-site-styled-gh-pages.zip
+        dest: /var/www/html
+                                   
+The result as below while running this playbook. 
+
+brogrammer@Midhuns-MacBook-Air .ansible % ansible-playbook ngn.yaml
+
+PLAY [all] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [bro]
+
+TASK [ensure nginx is at the latest version] *****************************************************************************************************************
+ok: [bro]
+
+TASK [start nginx] *******************************************************************************************************************************************
+ok: [bro]
+
+TASK [Ansible Create directory if not exists] ****************************************************************************************************************
+ok: [bro]
+
+TASK [copying file] ******************************************************************************************************************************************
+changed: [bro]
+
+PLAY RECAP ***************************************************************************************************************************************************
+bro                        : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
+
+
+
+The website is laoding as below while calling the  server IP. 
+
+https://prnt.sc/LVyEmRi4rMS0
+
+
+
+
+
+
+

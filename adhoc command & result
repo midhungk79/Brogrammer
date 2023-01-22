@@ -1,0 +1,28 @@
+
+brogrammer@Midhuns-MacBook-Air .ansible % ansible bro -b -m ansible.builtin.user -a 'name=Tim uid=5005 comment=Dummy_user shell=/usr/sbin/nologin password_expire_max=10 password=$5$.9Uk2L7vfMn46uQu$7BhbiokiduSeIX6vNWR7wjeB0/oR/AwztolxUsWOQiB'
+bro | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "comment": "Dummy_user",
+    "create_home": true,
+    "group": 5005,
+    "home": "/home/Tim",
+    "name": "Tim",
+    "password": "NOT_LOGGING_PASSWORD",
+    "shell": "/usr/sbin/nologin",
+    "state": "present",
+    "system": false,
+    "uid": 5005
+}
+brogrammer@Midhuns-MacBook-Air .ansible % 
+
+
+result got in the server. 
+
+
+ubuntu@ip-172-31-32-17:~$ grep -i dummy /etc/passwd
+Tim:x:5005:5005:Dummy_user:/home/Tim:/usr/sbin/nologin
+ubuntu@ip-172-31-32-17:~$ 
+
